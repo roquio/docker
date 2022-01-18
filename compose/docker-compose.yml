@@ -1,0 +1,61 @@
+version: "3.9"
+
+services:
+
+  nextcloud-db:
+    image: mariadb
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
+    env_file:
+      - ~/nextcloud.env
+    networks:
+      - nextcloud
+    volumes:
+      - nextcloud-db:/var/lib/mysql
+
+  nextcloud-app:
+    image: roquio:nextcloud-app
+    build:
+      context: ../nextcloud-app
+    restart: unless-stopped
+    environment:
+      - MYSQL_HOST=nextcloud-db
+    env_file:
+      - ~/nextcloud.env
+    depends_on:
+      - nextcloud-db
+    networks:
+      - nextcloud
+    volumes:
+      - nextcloud-app:/var/www/html
+
+  httpd:
+    image: roquio:httpd
+    build:
+      context: ../httpd
+      args:
+        - cloudPublicHost
+    restart: unless-stopped
+    depends_on:
+      - nextcloud-app
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - default
+      - nextcloud
+    volumes:
+      - certbot-letsencrypt:/etc/letsencrypt:ro
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot-letsencrypt:/etc/letsencrypt:rw
+
+networks:
+  nextcloud:
+
+volumes:
+  certbot-letsencrypt:
+  nextcloud-db:
+  nextcloud-app:
