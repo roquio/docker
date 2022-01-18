@@ -1,7 +1,7 @@
 FROM httpd
 
-ARG webPublicHost=www.roqu.io
-ARG nextcloudPublicHost=cloud.roqu.io
+ARG webPublicHost
+ARG nextcloudPublicHost
 
 COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY httpd-ssl.conf /usr/local/apache2/conf/extra/httpd-ssl.conf
