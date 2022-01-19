@@ -1,5 +1,9 @@
 # docker
 
+## Build
+
+    docker-compose build --pull --build-arg webPublicHost=www.roqu.io --build-arg nextcloudPublicHost=cloud.roqu.io
+
 ## Post-installation commands
 
 ### Nextcloud
@@ -34,6 +38,14 @@
     docker exec --user www-data roquio_nextcloud-app_1 php occ config:system:set enabledPreviewProviders 20 --value "OC\Preview\SVG"
     docker exec --user www-data roquio_nextcloud-app_1 php occ config:system:set enabledPreviewProviders 21 --value "OC\Preview\TIFF"
     docker exec --user www-data roquio_nextcloud-app_1 php occ config:system:set enabledPreviewProviders 22 --value "OC\Preview\Font"
+
+### Cron
+
+    crontab -e
+
+append this line:
+
+    */5  *  *  *  * docker exec --user www-data roquio_nextcloud-app_1 php cron.php
     
 ### Certificat
 
