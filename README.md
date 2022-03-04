@@ -2,7 +2,7 @@
 
 ## Build
 
-    docker-compose build --pull --build-arg webPublicHost=www.roqu.io --build-arg nextcloudPublicHost=cloud.roqu.io
+    docker-compose build --pull
 
 ## Post-installation commands
 
@@ -52,6 +52,6 @@ append this line:
     docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --register-unsafely-without-email --dry-run -d cloud.roqu.io
     docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d cloud.roqu.io
 
-## Certificat renew
+### Certificat renew
 
     docker-compose run --rm certbot renew
