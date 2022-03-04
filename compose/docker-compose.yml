@@ -31,8 +31,12 @@ services:
 
   collabora:
     image: collabora/code
+    restart: unless-stopped
+    cap_add:
+      - MKNOD
     environment:
-      - extra_params=--o:ssl.enable=false
+      - domain=cloud\.roqu\.io
+#      - extra_params=--o:ssl.enable=false
     ports:
       - "9980"
     networks:
