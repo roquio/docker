@@ -34,8 +34,8 @@ services:
     restart: unless-stopped
     cap_add:
       - MKNOD
-#    environment:
-#      - domain=cloud\.roqu\.io
+    environment:
+      - domain=cloud\.roqu\.io
 #      - extra_params=--o:ssl.enable=false
     expose:
       - "9980"
