@@ -5,11 +5,11 @@ ARG NEXTCLOUD_PUBLIC_HOST
 ARG COLLABORA_PUBLIC_HOST
 
 
-COPY httpd.conf /usr/local/apache2/conf/httpd.conf
-COPY httpd-ssl.conf /usr/local/apache2/conf/extra/httpd-ssl.conf
-COPY web.conf /usr/local/apache2/conf/extra/web.conf
-COPY nextcloud.conf /usr/local/apache2/conf/extra/nextcloud.conf
-COPY collabora.conf /usr/local/apache2/conf/extra/collabora.conf
+COPY conf/httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY conf/httpd-ssl.conf /usr/local/apache2/conf/extra/httpd-ssl.conf
+COPY conf/extra/web.conf /usr/local/apache2/conf/extra/web.conf
+COPY conf/extra/nextcloud.conf /usr/local/apache2/conf/extra/nextcloud.conf
+COPY conf/extra/collabora.conf /usr/local/apache2/conf/extra/collabora.conf
 
 
 RUN sed -i \
