@@ -29,19 +29,31 @@ services:
     volumes:
       - nextcloud-app:/var/www/html
 
+  collabora:
+    image: collabora/code
+    environment:
+      - extra_params=--o:ssl.enable=false
+    ports:
+      - "9980"
+    networks:
+      - nextcloud
+
   httpd:
     image: roquio:httpd
     build:
       context: ../httpd
       args:
-        - webPublicHost
-        - nextcloudPublicHost
+        - WEB_PUBLIC_HOST=roqu.io
+        - NEXCLOUD_PUBLIC_HOST=cloud.roqu.io
+        - COLLABORA_PUBLIC_HOST=office.roqu.io
     restart: unless-stopped
     depends_on:
       - nextcloud-app
+      - collabora
     ports:
       - "80:80"
       - "443:443"
+      - "9980:9980"
     networks:
       - default
       - nextcloud
