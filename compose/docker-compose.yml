@@ -36,7 +36,6 @@ services:
       - MKNOD
     environment:
       - aliasgroup1=https://cloud.roqu.io:443
-#      - domain=cloud\.roqu\.io
     expose:
       - "9980"
     networks:
