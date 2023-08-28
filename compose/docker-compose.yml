@@ -32,6 +32,7 @@ services:
   collabora:
     image: collabora/code
     restart: unless-stopped
+    privileged: true
     cap_add:
       - MKNOD
     environment:
