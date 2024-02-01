@@ -19,7 +19,7 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 # BZ2
-RUN docker-php-ext-install bz2 \
+RUN docker-php-ext-install bz2
 
 # PDF preview
 RUN sed -i 's/\(^ *<policy.*rights="\)\([^"]*\)\(".*PDF.*\/>\)/\1read|write\3/1' /etc/ImageMagick-6/policy.xml
