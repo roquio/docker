@@ -2,7 +2,7 @@
 
 ## Build
 
-    docker-compose build --pull
+    docker compose build --pull
 
 ## Post-installation commands
 
@@ -57,3 +57,10 @@ Ajouter ces lignes :
 ### Certificat renew
 
     docker-compose run --rm certbot renew
+
+
+### Exécution d’une commande de maintenance PHP
+
+Exemple pour la génération des index de base de données :
+
+    docker compose exec --user www-data nextcloud-app php occ db:add-missing-indices
