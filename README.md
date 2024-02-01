@@ -39,6 +39,7 @@
     docker exec --user www-data roquio_nextcloud-app_1 php occ config:system:set enabledPreviewProviders 21 --value "OC\Preview\TIFF"
     docker exec --user www-data roquio_nextcloud-app_1 php occ config:system:set enabledPreviewProviders 22 --value "OC\Preview\Font"
 
+
 ### Cron
 
     crontab -e
@@ -51,12 +52,13 @@ Ajouter ces lignes :
     
 ### Certificat
 
-    docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --register-unsafely-without-email --dry-run -d cloud.roqu.io
-    docker-compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d cloud.roqu.io
+    docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ --register-unsafely-without-email --dry-run -d cloud.roqu.io
+    docker compose run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d cloud.roqu.io
 
-### Certificat renew
+### Certificat renew (manually)
 
-    docker-compose run --rm certbot renew
+    docker compose run --rm certbot renew
+    docker compose restart httpd
 
 
 ### Exécution d’une commande de maintenance PHP
