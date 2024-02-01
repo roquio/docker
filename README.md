@@ -43,9 +43,11 @@
 
     crontab -e
 
-append this line:
+Ajouter ces lignes :
 
-    */5  *  *  *  * docker exec --user www-data roquio_nextcloud-app_1 php cron.php
+    */5  *  *  *  *  docker compose --file ~/docker/compose/docker-compose.yml --env-file ~/docker/compose/.env exec --user www-data nextcloud-app php cron.php
+    0    2  1  *  *  docker compose --file ~/docker/compose/docker-compose.yml --env-file ~/docker/compose/.env run --rm certbot renew && docker compose --file ~/docker/compose/docker-compose.yml --env-file ~/docker/compose/.env restart httpd
+
     
 ### Certificat
 
