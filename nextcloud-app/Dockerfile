@@ -13,10 +13,13 @@ RUN set -ex; \
         smbclient \
         supervisor \
         libreoffice \
-        libbz2-dev \
     ; \
+    apt-get install -y libbz2-dev \
     docker-php-ext-install bz2 \
     rm -rf /var/lib/apt/lists/*
+
+# BZ2
+RUN docker-php-ext-install bz2 \
 
 # PDF preview
 RUN sed -i 's/\(^ *<policy.*rights="\)\([^"]*\)\(".*PDF.*\/>\)/\1read|write\3/1' /etc/ImageMagick-6/policy.xml
