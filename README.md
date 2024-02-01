@@ -39,6 +39,13 @@
     docker exec --user www-data roquio_nextcloud-app_1 php occ config:system:set enabledPreviewProviders 21 --value "OC\Preview\TIFF"
     docker exec --user www-data roquio_nextcloud-app_1 php occ config:system:set enabledPreviewProviders 22 --value "OC\Preview\Font"
 
+    docker compose exec --user www-data nextcloud-app php occ config:system:set filelocking.enabled --value=true --type=boolean
+    docker compose exec --user www-data nextcloud-app php occ config:system:set memcache.locking --value="\OC\Memcache\Redis"
+    docker compose exec --user www-data nextcloud-app php occ config:system:set redis host --value="nextcloud-redis"
+    docker compose exec --user www-data nextcloud-app php occ config:system:set redis port --value=6379 --type=integer
+    docker compose exec --user www-data nextcloud-app php occ config:system:set redis timeout --value="0.0"
+    docker compose exec --user www-data nextcloud-app php occ config:system:set redis password --value="[password]"
+
 ### Cron
 
     crontab -e
