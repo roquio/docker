@@ -13,7 +13,9 @@ RUN set -ex; \
         smbclient \
         supervisor \
         libreoffice \
+        libbz2-dev \
     ; \
+    docker-php-ext-install bz2 \
     rm -rf /var/lib/apt/lists/*
 
 # PDF preview
