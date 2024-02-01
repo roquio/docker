@@ -36,7 +36,11 @@ services:
     cap_add:
       - MKNOD
     environment:
+      - username=${COLLABORA_ADMIN_USER}
+      - password=${COLLABORA_ADMIN_PASSWORD}
       - aliasgroup1=https://cloud.roqu.io:443
+    env_file:
+      - ~/nextcloud.env
     expose:
       - "9980"
     networks:
