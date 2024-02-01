@@ -14,8 +14,8 @@ RUN set -ex; \
         supervisor \
         libreoffice \
     ; \
-    apt-get install -y libbz2-dev \
-    docker-php-ext-install bz2 \
+    apt-get install -y libbz2-dev; \
+    docker-php-ext-install bz2; \
     rm -rf /var/lib/apt/lists/*
 
 # BZ2
