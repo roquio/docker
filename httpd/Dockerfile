@@ -4,6 +4,7 @@ ARG WEB_PUBLIC_HOST
 ARG NEXTCLOUD_PUBLIC_HOST
 ARG COLLABORA_PUBLIC_HOST
 ARG DOCKER_REGISTRY_PUBLIC_HOST
+ARG DEMO_PUBLIC_HOST
 
 
 COPY conf/httpd.conf /usr/local/apache2/conf/httpd.conf
@@ -12,6 +13,7 @@ COPY conf/extra/web.conf /usr/local/apache2/conf/extra/web.conf
 COPY conf/extra/nextcloud.conf /usr/local/apache2/conf/extra/nextcloud.conf
 COPY conf/extra/collabora.conf /usr/local/apache2/conf/extra/collabora.conf
 COPY conf/extra/docker-registry.conf /usr/local/apache2/conf/extra/docker-registry.conf
+COPY conf/extra/demo.conf /usr/local/apache2/conf/extra/demo.conf
 
 
 RUN sed -i \
@@ -33,3 +35,7 @@ RUN sed -i \
 RUN sed -i \
     -e "s/DOCKER_REGISTRY_PUBLIC_HOST/$DOCKER_REGISTRY_PUBLIC_HOST/g" \
     /usr/local/apache2/conf/extra/docker-registry.conf
+
+RUN sed -i \
+    -e "s/DEMO_PUBLIC_HOST/$DEMO_PUBLIC_HOST/g" \
+    /usr/local/apache2/conf/extra/demo.conf \

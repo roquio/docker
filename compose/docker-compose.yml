@@ -57,6 +57,7 @@ services:
         - NEXTCLOUD_PUBLIC_HOST=cloud.roqu.io
         - COLLABORA_PUBLIC_HOST=office.roqu.io
         - DOCKER_REGISTRY_PUBLIC_HOST=registry.roqu.io
+        - DEMO_PUBLIC_HOST=demo.roqu.io
     restart: unless-stopped
     depends_on:
       - nextcloud-app
@@ -66,6 +67,8 @@ services:
       - "80:80"
       - "443:443"
       - "5043:5043"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - default
       - nextcloud
