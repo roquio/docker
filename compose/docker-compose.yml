@@ -70,6 +70,8 @@ services:
       - default
       - nextcloud
     volumes:
+      - `pwd`/httpd.htpasswd:/usr/local/apache2/conf/httpd.htpasswd
+      - `pwd`/httpd.groups:/usr/local/apache2/conf/httpd.groups
       - certbot-webroot:/var/www/certbot:ro
       - certbot-letsencrypt:/etc/letsencrypt:ro
 

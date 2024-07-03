@@ -13,9 +13,6 @@ COPY conf/extra/nextcloud.conf /usr/local/apache2/conf/extra/nextcloud.conf
 COPY conf/extra/collabora.conf /usr/local/apache2/conf/extra/collabora.conf
 COPY conf/extra/docker-registry.conf /usr/local/apache2/conf/extra/docker-registry.conf
 
-COPY ~/httpd.htpasswd /usr/local/apache2/conf/httpd.htpasswd
-COPY ~/httpd.groups /usr/local/apache2/conf/httpd.groups
-
 
 RUN sed -i \
     -e "s/WEB_PUBLIC_HOST/$WEB_PUBLIC_HOST/g" \
