@@ -12,7 +12,6 @@ services:
       - nextcloud-db:/var/lib/mysql
 
   nextcloud-app:
-    image: roquio:nextcloud-app
     build:
       context: ../nextcloud-app
     restart: unless-stopped
@@ -51,7 +50,6 @@ services:
       - docker-registry-data:/var/lib/registry
 
   httpd:
-    image: roquio:httpd
     build:
       context: ../httpd
       args:
