@@ -31,5 +31,5 @@ RUN sed -i \
     /usr/local/apache2/conf/extra/collabora.conf
 
 RUN sed -i \
-    -e "s/COLLABORA_PUBLIC_HOST/$DOCKER_REGISTRY_PUBLIC_HOST/g" \
+    -e "s/DOCKER_REGISTRY_PUBLIC_HOST/$DOCKER_REGISTRY_PUBLIC_HOST/g" \
     /usr/local/apache2/conf/extra/docker-registry.conf
