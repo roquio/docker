@@ -49,6 +49,14 @@ services:
     volumes:
       - docker-registry-data:/var/lib/registry
 
+  nexus:
+    image: sonatype/nexus3
+    restart: unless-stopped
+    expose:
+      - "8081"
+    volumes:
+      - nexus-data:/nexus-data
+
   httpd:
     build:
       context: ../httpd
@@ -57,6 +65,7 @@ services:
         - NEXTCLOUD_PUBLIC_HOST=cloud.roqu.io
         - COLLABORA_PUBLIC_HOST=office.roqu.io
         - DOCKER_REGISTRY_PUBLIC_HOST=registry.roqu.io
+        - NEXUS_PUBLIC_HOST=packages.roqu.io
         - DEMO_PUBLIC_HOST=demo.roqu.io
     restart: unless-stopped
     depends_on:
@@ -98,3 +107,4 @@ volumes:
   nextcloud-db:
   nextcloud-app:
   docker-registry-data:
+  nexus-data:
