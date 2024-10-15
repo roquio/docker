@@ -1,7 +1,7 @@
 services:
 
   nextcloud-db:
-    image: mariadb
+    image: mariadb:11.4
     restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
     env_file:
