@@ -41,14 +41,6 @@ services:
     networks:
       - nextcloud
 
-  docker-registry:
-    image: registry:2
-    restart: unless-stopped
-    expose:
-      - "5000"
-    volumes:
-      - docker-registry-data:/var/lib/registry
-
   nexus:
     image: sonatype/nexus3
     restart: unless-stopped
@@ -64,14 +56,13 @@ services:
         - WEB_PUBLIC_HOST=roqu.io
         - NEXTCLOUD_PUBLIC_HOST=cloud.roqu.io
         - COLLABORA_PUBLIC_HOST=office.roqu.io
-        - DOCKER_REGISTRY_PUBLIC_HOST=registry.roqu.io
         - NEXUS_PUBLIC_HOST=packages.roqu.io
         - DEMO_PUBLIC_HOST=demo.roqu.io
     restart: unless-stopped
     depends_on:
       - nextcloud-app
       - collabora
-      - docker-registry
+      - nexus
     ports:
       - "80:80"
       - "443:443"
@@ -106,5 +97,4 @@ volumes:
   certbot-letsencrypt:
   nextcloud-db:
   nextcloud-app:
-  docker-registry-data:
   nexus-data:
