@@ -56,6 +56,7 @@ services:
         - WEB_PUBLIC_HOST=roqu.io
         - NEXTCLOUD_PUBLIC_HOST=cloud.roqu.io
         - COLLABORA_PUBLIC_HOST=office.roqu.io
+        - DOCKER_REGISTRY_PUBLIC_HOST=registry.roqu.io
         - NEXUS_PUBLIC_HOST=packages.roqu.io
         - DEMO_PUBLIC_HOST=demo.roqu.io
     restart: unless-stopped
