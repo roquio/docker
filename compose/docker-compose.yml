@@ -60,7 +60,6 @@ services:
       - forgejo-data:/data
     ports:
       - "3000"
-      - "22"
 
   httpd:
     build:
