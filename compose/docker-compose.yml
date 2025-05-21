@@ -50,6 +50,18 @@ services:
     volumes:
       - nexus-data:/nexus-data
 
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:11
+    restart: unless-stopped
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    volumes:
+      - forgejo-data:/data
+    ports:
+      - "3000"
+      - "22"
+
   httpd:
     build:
       context: ../httpd
@@ -59,6 +71,7 @@ services:
         - COLLABORA_PUBLIC_HOST=office.roqu.io
         - DOCKER_REGISTRY_PUBLIC_HOST=registry.roqu.io
         - NEXUS_PUBLIC_HOST=packages.roqu.io
+        - FORGEJO_PUBLIC_HOST=forgejo.roqu.io
         - DEMO_PUBLIC_HOST=demo.roqu.io
     restart: unless-stopped
     depends_on:
@@ -100,3 +113,4 @@ volumes:
   nextcloud-db:
   nextcloud-app:
   nexus-data:
+  forgejo-data:

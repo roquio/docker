@@ -5,6 +5,7 @@ ARG NEXTCLOUD_PUBLIC_HOST
 ARG COLLABORA_PUBLIC_HOST
 ARG DOCKER_REGISTRY_PUBLIC_HOST
 ARG NEXUS_PUBLIC_HOST
+ARG FORGEJO_PUBLIC_HOST
 ARG DEMO_PUBLIC_HOST
 
 
@@ -15,6 +16,7 @@ COPY conf/extra/nextcloud.conf /usr/local/apache2/conf/extra/nextcloud.conf
 COPY conf/extra/collabora.conf /usr/local/apache2/conf/extra/collabora.conf
 COPY conf/extra/docker-registry.conf /usr/local/apache2/conf/extra/docker-registry.conf
 COPY conf/extra/nexus.conf /usr/local/apache2/conf/extra/nexus.conf
+COPY conf/extra/forgejo.conf /usr/local/apache2/conf/extra/forgejo.conf
 COPY conf/extra/demo.conf /usr/local/apache2/conf/extra/demo.conf
 
 
@@ -41,6 +43,10 @@ RUN sed -i \
 RUN sed -i \
     -e "s/NEXUS_PUBLIC_HOST/$NEXUS_PUBLIC_HOST/g" \
     /usr/local/apache2/conf/extra/nexus.conf
+
+RUN sed -i \
+    -e "s/FORGEJO_PUBLIC_HOST/$FORGEJO_PUBLIC_HOST/g" \
+    /usr/local/apache2/conf/extra/forgejo.conf
 
 RUN sed -i \
     -e "s/DEMO_PUBLIC_HOST/$DEMO_PUBLIC_HOST/g" \
